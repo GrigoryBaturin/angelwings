@@ -47,3 +47,15 @@ function showSlider(type) {
     }, timeAutoNext)
 }
 // Header slider end
+
+//accordion
+
+const accordion = document.getElementsByClassName('contentBx');
+
+for(i = 0; i < accordion.length; i++) {
+    accordion[i].addEventListener('click', function(){
+        this.classList.toggle('active')
+    })
+}
+
+//accordion end
