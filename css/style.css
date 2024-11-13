@@ -7,14 +7,23 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box !important;
-    scroll-behavior: smooth !important;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
+    width: 100%;
+    height: 100%;
     background-color: #f5f5f5;
     font-family: "Oswald", sans-serif !important;
     font-optical-sizing: auto;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -47,7 +56,7 @@ header {
 .carousel {
     width: 100%;
     height: 95vh;
-    margin-top: 50px;
+    margin-top: 70px;
     overflow: hidden;
     position: relative;
 }
@@ -58,7 +67,7 @@ header {
     top: 85%;
     transform: translateY(-70%);
     position: absolute;
-    left: 70%;
+    left: 5%;
     border-radius: 20px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
     background-position: 50% 50%;
@@ -76,7 +85,7 @@ header {
     width: 100%;
     height: 100%;
 }
-.carousel .list .item:nth-child(3) {
+/* .carousel .list .item:nth-child(3) {
     left: 85%;
 }
 
@@ -91,7 +100,7 @@ header {
 .carousel .list .item:nth-child(6) {
     left: calc(85% + 320px);
     opacity: 0;
-}
+} */
 
 .item .contentSlide {
     position: relative;
@@ -162,7 +171,7 @@ header {
 .arrows {
     position: absolute;
     top: 82%;
-    right: 45%;
+    right: 5%;
     z-index: 200;
     width: 300px;
     min-width: 30%;
@@ -232,6 +241,8 @@ header {
     max-width: 1320px;
 }
 
+/* Navbar */
+
 .navbar {
     background-color: #111517;
     color: #f5f5f5;
@@ -250,11 +261,16 @@ header {
     align-items: center;
 }
 
+.navmenu_burger {
+    display: none;
+}
+
+
 .mainMenu li:last-child {
     margin-right: 0;
 }
 
-.mainMenu {
+.mainMenu, .navContacts {
     font-size: 1.5em;
     display: flex;
 }
@@ -263,11 +279,6 @@ header {
     margin-right: 20px;
     display: flex;
     align-items: center;
-}
-
-.navContacts {
-    font-size: 1.3em;
-    display: flex;
 }
 
 .navContacts li {
@@ -283,6 +294,157 @@ header {
     height: 23px;
     margin-top: 5px;
 }
+
+@media (max-width: 1280px) {
+     /* Navbar */
+    .mainMenu, .navContacts {
+        font-size: 1.2em;
+    }
+    /* End navbar */
+
+    /* Slider header */
+
+    
+
+    /* End slider header */
+}
+
+@media (max-width: 1024px) {
+    /* Navbar */
+    .mainMenu, .navContacts {
+        font-size: 0.9em;
+    }
+
+    .mainMenu {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .mainMenu li {
+        margin-right: 8px;
+    }
+
+    #logo {
+        width: 20px;
+        height: 18px;
+    }
+    /* End navbar */
+
+    /* Slider header */
+
+    
+
+    /* End slider header */
+
+    .footer {
+        max-width: 1320px;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Navbar */
+    .mainMenu, .navContacts {
+        font-size: 1em;
+    }
+
+    .mainMenu {
+        position: fixed;
+        width: 25%;
+        height: auto;
+        left: -100%;
+        top: 70px;
+        display: flex;
+        background-color: #111517;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px 0; 
+        transition: all 0.5s ease 0s;
+    }
+
+    .mainMenu.burger_active {
+        top: 70px;
+        left: 0;
+    }
+
+    .mainMenu  li:first-child {
+        display: none;
+    }
+
+    .mainMenu  li {
+        margin-right: 0;
+    }
+
+    .navbar_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 25px;
+    }
+
+    .navmenu_burger {
+        display: block;
+        width: 30px;
+        height: 20px;
+        position: relative;
+    }
+
+    .navmenu_burger::before,
+    .navmenu_burger::after {
+        content: '';
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        transition: all 0.5s ease 0s;
+    }
+
+    .navmenu_burger::before {
+        top: 0;
+    }
+
+    .navmenu_burger::after {
+        bottom: 0;
+    }
+
+    .navmenu_burger span {
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+        transition: all 0.5s ease 0s;
+    }
+
+    .navmenu_burger.burger_active::before {
+        transform: rotate(45deg);
+        margin-top: 9px;
+    }
+
+    .navmenu_burger.burger_active::after {
+        transform: rotate(-45deg);
+        margin-bottom: 9px;
+    }
+
+    .navmenu_burger.burger_active span {
+        transform: scale(0);
+    }
+    /* End navbar */
+
+    /* Slider header */
+
+
+
+    /* End slider header */
+}
+
+/* End navbar */
 
 .welcome {
     background-color:  #111517;
@@ -578,8 +740,89 @@ h2.darkTitleSecond {
     color: #fff;
 }
 
+/* Report */
+
+.reportTitle {
+    margin-top: 50px;
+}
+
+.report {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.report .report_container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.report .report_container .report_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report .report_container .report_data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.report .report_container .report_data .report_autor > span {
+    color: #ef0d33;
+}
+
+.report .report_container .report_block .report_img {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 1px solid #111517;
+}
+
+.report .report_container .report_block .report_img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.report .report_block .report_content {
+    max-width: 75%;
+}
+
+.show_reports {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.showButton:hover {
+    cursor: pointer;
+    color: #ef0d33;
+    transition: 0.5s;
+}
+
+.hideActive {
+    display: none;
+}
+
+/* End report */
+
 .footer {
-    width: 1320px;
+    max-width: 1320px;
     height: auto;
     display: flex;
     justify-content: space-around;
@@ -809,3 +1052,20 @@ input:checked + label .description {
   }
 
 /* Scrollbar end */
+
+
+/* Media query */
+
+@media (max-width: 1400px) {
+    
+}
+
+@media (max-width: 990px) {
+    
+}
+
+@media (max-width: 770px) {
+    
+}
+
+/* End media query */
