@@ -7,7 +7,7 @@ let item = document.querySelector('.item');
 let runningTime = document.querySelector('.timeRunning');
 
 let timeRunning = 3000
-let timeAutoNext = 5000
+let timeAutoNext = 7000
 
 nextBtn.onclick = function(){
     showSlider('nextBtn')
