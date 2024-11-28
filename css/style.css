@@ -551,11 +551,11 @@ h2.darkTitleSecond {
     display: none;
 }
 
-.accordion .contentBx.active .label::before {
+.accordion .contentBx.activeAcrd .label::before {
     content: '-';
 }
 
-.accordion .contentBx.active .contentSwing {
+.accordion .contentBx.activeAcrd .contentSwing {
     height: 150px;
     padding: 15px;
 }
@@ -1535,7 +1535,7 @@ input:checked + label .description {
 
     /* accordion */
 
-    .accordion .contentBx.active .contentSwing {
+    .accordion .contentBx.activeAcrd .contentSwing {
         height: 270px;
     }
 }
@@ -1809,7 +1809,7 @@ input:checked + label .description {
         font-size: 1em;
     }
 
-    .md_swingTheme .accordion .contentBx.active .contentSwing {
+    .md_swingTheme .accordion .contentBx.activeAcrd .contentSwing {
         padding: 20px;
         height: 320px;
     }
@@ -1910,6 +1910,10 @@ input:checked + label .description {
      .accordion .contentBx .label {
         font-size: 1.4em;
     }
+
+    #footer {
+        padding: 30px 0;
+    }
 }
 
 
@@ -1937,7 +1941,7 @@ input:checked + label .description {
     .welcome .md_welcome h2,
     .md_title h2.whiteTitleFirst,
     .md_title h2.darkTitleFirst {
-        font-size: 1.7em;
+        font-size: 1.5em;
     }
 
     .md_dark .md_wrapper .md_archiveSlider .wrapper .container input:checked + label {
