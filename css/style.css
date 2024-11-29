@@ -820,7 +820,7 @@ input {
 }
 
 input:checked + label {
-    width: 600px;
+    width: 670px;
 }
 
 input:checked + label .description {
@@ -1100,7 +1100,7 @@ input:checked + label .description {
     }
 
     .md_dark .md_wrapper .md_archiveSlider .wrapper .container input:checked + label {
-        margin-bottom: -90px;
+        margin-bottom: -75px;
     }
 
     input:checked + label {
