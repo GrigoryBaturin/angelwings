@@ -1,7 +1,7 @@
 <?php
-    include './db_connect_php/db.php';
+    require_once '../db_connect_php/db.php';
+    require_once '../php_components/main.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@
 <body>
     <!--Navbar-->
     <?php
-        require('../php_components/navbar.php')
+        require_once('../php_components/navbar.php')
     ?>
     <!--End navbar -->
     <div class="container">
@@ -83,91 +83,53 @@
                     <h2 class="whiteTitleFirst">Мероприятия</h2>
                     <h2 class="whiteTitleSecond">Предстоящая вечеринка</h2>
                 </div>
-                <div class="eventModule">
-                    <div class="banner">
-                        <img src="../images/event/01.png" style="max-width: 400px; max-height: 400px;" alt="">
-                    </div>
-                    <div class="desriptionEvent">
-                        <h2>Свинг вечеринка в Москве</h2>
-                        <ul>
-                            <li><span>Место проведения: Москва-Сити.</span></li>
-                            <li><span>Дата проведения: 27 сентября.</span></li>
-                            <li><span>Шоу-программа: Wax-play от Анна, флагеляция, electro-play.</span></li>
-                            <li><span>Для девушек: Массаж, йони-массаж, сквирт, сенсориум.</span></li>
-                            <li><span>Музыкальное сопровождение: Dj NeoGeisha.</span></li>
-                            <li><span>Вас ожидает: панорамные окна, огромный зал с шикарными диванами,
-                                спальные комнаты, джакузи, аппартаменты в 230кв м. Всем девушкам, пришедшим с 23:00 до 00:00 шампанское FREE.</span></li>
-                            <li><span>Вас ожидает: панорамные окна, огромный зал с шикарными диванами,
-                                спальные комнаты, джакузи, аппартаменты в 230кв м. Всем девушкам, пришедшим с 23:00 до 00:00 шампанское FREE.</span></li>
-                            <li><span>Дата проведения: 27 сентября.</span></li>
-                            <li><span>Шоу-программа: Wax-play от Анна, флагеляция, electro-play.</span></li>
-                            <li><span>Для девушек: Массаж, йони-массаж, сквирт, сенсориум.</span></li>
-                            <li><span>Музыкальное сопровождение: Dj NeoGeisha.</span></li>
-                            <li><span>Начало: 23:00 ч.</span></li>
-                        </ul>
-                    </div>
-                </div> 
+                <?php
+                 $sql = 'SELECT * FROM event ORDER BY id LIMIT 1';
+                 $query = $pdo->prepare( $sql );
+                 $query->execute();
+                 $event = $query->fetchAll(PDO::FETCH_OBJ);
+                    foreach( $event as $el )
+                    echo "
+                        <div class='eventModule'>
+                            <div class='banner'>
+                                    <img src='../images/event/$el->image' style='max-width: 400px; max-height: 400px;' alt=''>
+                            </div>
+                            <div class='desriptionEvent'>
+                                <h2>$el->title</h2>
+                                <ul>
+                                    $el->text
+                                </ul>
+                            </div>
+                        </div> 
+                    ";
+                ?>
             </div>
         </div>
         <!--End event-->
         <!--info-->
+        <?php
+            $sql = 'SELECT * FROM swingInfo';
+            $query = $pdo->prepare( $sql );
+            $query->execute();
+            $swingInfo = $query->fetchAll(PDO::FETCH_OBJ);
+            foreach( $swingInfo as $el_info )
+        ?>
         <div class="md_dark info" id="info">
             <div class="md_wrapper">
                 <div class="md_title">
-                    <h2 class="whiteTitleFirst">Что такое СВИНГ?</h2>
-                    <h2 class="whiteTitleSecond">Свинг - это заняте сексом между двумя или несколькими парами.</h2>
+                    <h2 class="whiteTitleFirst"><?php echo $el_info->title; ?></h2>
+                    <h2 class="whiteTitleSecond"><?php echo $el_info->description; ?></h2>
                 </div>
                 <div class="blockFirst">
                     <div class="md_left">
-                        <p>Разновидности свинга:<br /><br />
-                            <span>Мягкий свинг</span> — это когда встречаются пары и занимаются сексом рядом, на одной кровати со своими партнёрами, без обмена парами.
-                            В таком свинге допускаются ласки девушек друг с другом.<br />
-                            <span>Открытый свинг</span> — это когда занимаются сексом с обменом партнёрами в одной комнате, чтобы партнёры видели друг друга. <br />
-                            <span>Закрытый свинг</span> — это когда пары обмениваются партнёрами и расходятся в разные комнаты для занятия сексом.</p>
+                    <?php echo $el_info->varieties; ?>
                     </div>
                     <div class="md_right">
-                        <p>Так же есть различные дополнения к свингу:<br /><br />
-                            <span>МЖМ</span> — 2 мужчин и 1 девушка.<br />
-                            <span>МЖМММ</span> — это уже называется Генг Бэнг, когда 1 девушка и более 3-4 мужчин.<br />
-                            <span>ЖМЖ</span> — 2 девушек и 1 мужчина.<br /><br />
-    
-                            Главное в свинге — честно рассказать друг другу о своих желаниях. А приходя на вечеринку, заранее договариваться, кто что может делать.
-                        </p>
+                    <?php echo $el_info->additions; ?>
                     </div>
                 </div>
                 <div class="blockSecond">
-                    <p>Мы до сих пор живём в консервативном обществе, где есть определённые правила нравственности, ограничения, рамки дозволенного. Это то, что заставляет людей подавлять свои желания.
-                        По статистике всего 20% людей на планете Земля живут так, как хотят, открывая для себя новые ощущения в сексе, а 35% - хотят, но не решаются. Сохранить культуру и цивилизованность своего собственного «Я»,
-                        при этом иметь возможность познания новых эмоций – одно из самых заветных желаний человека, независимо от его статуса, религии, менталитета.<br /><br />
-                        
-                        Моя основная задача – предложить каждому желающему возможность узнать себя, внести разнообразие в сексуальную и семейную жизнь, воплотить
-                        фантазии или подглядеть их у других. Это и возможность познакомиться с необыкновенными людьми, завести приятные знакомства,
-                        а для кого-то даже найти свою любовь. Да, да, ходят слухи, что принц Гарри встретил свою принцессу на подобных мероприятиях.<br /><br />
-                        
-                        Что тебя ждёт на моих вечеринках? Атмосфера уюта и комфорта, зашкаливающих эмоций, невероятные виды на Москву, общение с красивыми людьми.<br /><br />
-                        
-                        Как попасть на такое мероприятие?<br />
-                        Чтобы оказаться в нужное время, в нужном месте, тебе необходимо пройти предварительный face control. Все это мы делаем по рекомендации членов клуба и для того, чтобы ты наслаждался обществом приятной компании.
-                        Ты уточняешь есть ли свободные места на определённую дату, ведь апартаменты всегда разные, а желающих посетить вечеринку много.
-                        После согласования ты получишь контакты администратора, все подробности, явки и пароли. Администратор — твой проводник.
-                        Она встретит, покажет апартаменты, расскажет правила и ответит на все вопросы.<br />
-                        Если захочешь получить скидку, оплати заранее.<br />
-                        Если ты впервые на мероприятии, то к тебе обязательно подойдёт познакомится и пообщается организатор.<br /><br />
-                        
-                        Каким ты будешь на вечеринке?<br />
-                        Решать только тебе.<br />
-                        Есть много опций:<br />
-                        Скромное/нескромное общение у бара с интересными знакомствами, с продолжением за пределами клуба или на самой вечеринке.<br />
-                        Возможно ты просто захочешь реализовать что-то новенькое и скажешь об этом администратору.<br />
-                        Или ты просто захочешь потанцевать до утра.<br /><br />
-                        
-                        У нас есть всё, что тебе необходимо: работает бар, есть шары удовольствия, кальян, фуршет из фруктов, безалкогольные напитки,
-                        полотенца, средства контрацепции и т.д.<br /><br />
-                         
-                        Мы ждём мужчин в стиле casual.<br />
-                        Девушки, оденьте самые сексуальные платья/бельё и шпильки.<br />
-                        Наше пространство сделает твою жизнь незабываемой и полной эмоций — приходи!<br /><br />
-                        С нами возможно все.</p>
+                <?php echo $el_info->text; ?>
                 </div>
             </div>
         </div>
@@ -180,25 +142,19 @@
                 </div>
                 <div class="md_swingTheme">
                     <div class="accordion">
-                        <div class="contentBx">
-                            <div class="label">Индивидуальные тренинги для пар</div>
-                            <div class="contentSwing">
-                                <p>
-                                Провожу тренинги по свингу с парами. Объясняю в чём смысл свинга, в чём его идея.
-                                Обсуждаем сложившиеся проблемы, подбираю для каждой пары правила поведения на свинг встречах,
-                                для каждой пары индивидуально, решаю их разногласия и пара приходит к единому мнению.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contentBx">
-                            <div class="label">Книга "Идеология честных семейных отношений"</div>
-                            <div class="contentSwing">
-                                <p>
-                                Пишу книгу «Идеология честных семейных отношений» уже пару лет, скоро обязательно допишу и представлю её Вам.
-                                Свинг — это есть идеология честных и открытых отношений в семье или в паре между мужчиной и девушкой.
-                                </p>
-                            </div>
-                        </div>
+                        <?php
+                        $sql = 'SELECT * FROM swingTheme';
+                        $query = $pdo->prepare( $sql );
+                        $query->execute();
+                        $swingTheme = $query->fetchAll(PDO::FETCH_OBJ);
+                        foreach( $swingTheme as $el_theme )
+                        echo "<div class='contentBx'>
+                                <div class='label'>$el_theme->title</div>
+                                <div class='contentSwing'>
+                                    $el_theme->text
+                                </div>
+                            </div>";
+                    ?>
                     </div>
                 </div> 
                 </div> 
@@ -206,36 +162,10 @@
         <!--End Swing theme-->
     </div>
     <!--Footer-->
-    <div class="md_dark" id="footer">
-        <div class="md_wrapper">
-            <section class="footer">
-                <div class="md_footer_left">
-                    <ul class="doubleMenu">
-                        <li><a href="../main/">Главная</a></li>
-                        <li><a href="../howgetparty/">Как попасть на вечеринку?</a></li>
-                        <li><a href="../media/">Медиа</a></li>
-                        <li><a href="../report/">Репорт вечеринок</a></li>
-                        <li><a href="../about/">Обо мне</a></li>
-                    </ul>
-                </div>
-                <div class="md_footer_right">
-                    <ul class="contacts">
-                        <li><i class="fi fi-rr-paper-plane md_icon"></i><a href="https://t.me/swingpartymsk" target="_blank">Наш Telegram-канал</a></li>
-                        <li><i class="fi fi-rr-paper-plane md_icon"></i><a href="https://t.me/wings_angel" target="_blank">Связаться с нами</a></li>
-                        <li><i class="fi fi-rr-phone-call md_icon"></i><a href="tel:+74959734553">+7(495)973-45-53</a></li>
-                        <li><i class="fi fi-rr-phone-call md_icon"></i><a href="tel:+79015534553">+7(901)553-45-53</a></li>
-                        <li><i class="fi fi-rr-camera md_icon"></i></i><a href="https://www.instagram.com/swingpartymsk" target="_blank">Наша страница в Instagram</a></li>
-                        <li><i class="fi fi-rr-list-check md_icon"></i><a href="../images/rules/Pravila-kluba-Wings.pdf" target="_blank">Скачать правила клуба</a></li>
-                    </ul>
-                </div>
-            </section>
-            <section class="copyright">
-                <span>© Copyright 2020 AngelWings. Все права защищены!</span>
-                <span>Сайт разрешен для просмотра лицам, достигшим возраста 18 лет.</span>
-            </section>
-        </div>
-        </div>
-        <!--End footer-->
+    <?php
+        require_once('../php_components/footer.php')
+    ?>
+    <!--End footer-->
 <script src="../scripts/main.js"></script>
 <script src="../scripts/slider.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
