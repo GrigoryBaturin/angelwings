@@ -787,24 +787,7 @@ ul li:hover {
     box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
 }
 
-.card > .row {
-    color: white;
-    display: flex;
-    flex-wrap: nowrap;
-}
 
-.card > .row > .description {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    overflow: hidden;
-    height: 80px;
-    width: 520px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition-delay: .3s;
-    transition: all .3s ease;
-}
 
 .description p {
     color: #b0b0ba;
@@ -828,32 +811,11 @@ input:checked + label .description {
     transform: translateY(0) !important;
 }
 
-.card[for="c1"] {
-    background-image: url('../images/event/01.png');
+label.card img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
-.card[for="c2"] {
-    background-image: url('../images/event/02.png');
-}
-.card[for="c3"] {
-    background-image: url('../images/event/03.png');
-}
-.card[for="c4"] {
-    background-image: url('../images/event/04.png');
-}
-.card[for="c5"] {
-    background-image: url('../images/event/07.png');
-}
-.card[for="c6"] {
-    background-image: url('../images/event/06.png');
-}
-.card[for="c7"] {
-    background-image: url('../images/event/05.png');
-}
-.card[for="c8"] {
-    background-image: url('../images/event/08.png');
-}
-
-
 
 /*End arhive event */
 
@@ -1100,7 +1062,7 @@ input:checked + label .description {
     }
 
     .md_dark .md_wrapper .md_archiveSlider .wrapper .container input:checked + label {
-        margin-bottom: -75px;
+        margin-bottom: 0;
     }
 
     input:checked + label {
@@ -1517,7 +1479,6 @@ input:checked + label .description {
     }
 
     .md_dark .md_wrapper .md_archiveSlider .wrapper .container input:checked + label {
-        margin-bottom: -33px;
         height: 365px;
     }
 
@@ -1874,7 +1835,6 @@ input:checked + label .description {
     
 
     .md_dark .md_wrapper .md_archiveSlider .wrapper .container input:checked + label {
-        margin-bottom: -25px;
         height: 315px;
     }
 
@@ -1945,7 +1905,6 @@ input:checked + label .description {
     }
 
     .md_dark .md_wrapper .md_archiveSlider .wrapper .container input:checked + label {
-        margin-bottom: -18px;
         height: 260px;
     }
 

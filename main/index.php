@@ -142,7 +142,7 @@
                 </div>
                 <div class="md_swingTheme">
                     <div class="accordion">
-                        <?php
+                    <?php
                         $sql = 'SELECT * FROM swingTheme';
                         $query = $pdo->prepare( $sql );
                         $query->execute();

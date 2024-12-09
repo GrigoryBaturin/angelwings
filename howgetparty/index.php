@@ -18,32 +18,20 @@
     <!--End navbar-->
     <div class="container">
         <!--Party-->
+        <?php
+            $sql = 'SELECT * FROM rules';
+            $query = $pdo->prepare( $sql );
+            $query->execute();
+            $rules = $query->fetchAll(PDO::FETCH_OBJ);
+            foreach( $rules as $el_rules )
+        ?>
         <div class="md_dark party" id="party">
             <div class="md_wrapper">
                 <div class="md_title">
-                    <h2 class="whiteTitleFirst" style="margin-top: 20px;"><span style="color: #ef0d33;">Правила</span> на моих вечеринках</h2>
+                <?php echo $el_rules->title; ?>
                 </div>
                 <section class="clubRules">
-                     <ul>
-                        <li><i class="fi fi-rr-handshake md_icon"></i><span>Уважайте друг друга находясь на вечеринке.</span></li>
-                        <li><i class="fi fi-rr-hand-holding-heart md_icon"></i><span>На моих вечеринках никто никому ничего не должен,
-                            всё только по взаимной симпатии и взаимному согласию.</span></li>
-                        <li><i class="fi fi-rr-mode-portrait md_icon"></i><span>Если мы замечаем, что ваше поведение стало неадекватным,
-                            охрана сразу попросит вас покинуть вечеринку.</span></li>
-                        <li><i class="fi fi-rr-ban md_icon"></i><span>Фото и видео съёмка запрещена.</span></li>
-                        <li><i class="fi fi-rr-ban md_icon"></i><span>На вечеринке запрещены оказания любых интимных услуг за деньги.</span></li>
-                        <li><i class="fi fi-rr-ban md_icon"></i><span>Запрещено употребление и продажа любых наркотических средств.</span></li>
-                        <li><i class="fi fi-rr-ban md_icon"></i><span>Запрещены любые действия, нарушающие законы РФ.</span></li>
-                        <li><i class="fi fi-rr-broom md_icon"></i><span>Соблюдайте порядок и чистоту. Выбрасывайте использованные средства
-                            защиты и личной гигиены в урны (они установлены в каждом привате и туалетах).<br />
-                            Бросил на пол - <span style="color: #ef0d33;">штраф 5000 рублей!</span></span></li>
-                        <li><i class="fi fi-rr-usd-circle md_icon"></i> <span>Возврат денежных средств  не предусмотрен. Возможен перенос предоплаты на следующую вечеринку.</span></li>
-                        <li><i class="fi fi-rr-interrogation md_icon"></i><span>Если у вас возникнет любая непонятная ситуация , вы сразу обращаетесь к администратору вечеринки
-                            и мы решим возникшие проблемы.</span></li>
-                        <li><i class="fi fi-rr-sign-in-alt md_icon"></i><span>За нарушение правил, мы в праве попросить Вас покинуть
-                            вечеринку или сделать первое и последнее предупреждение!</span></li>
-                        <li><span><i class="fi fi-rr-social-network md_icon"></i>Соблюдайте правила и не надо портить себе вечер.</span></li>
-                    </ul>
+                <?php echo $el_rules->text; ?>
                 </section>
             </div>
         </div>
@@ -53,59 +41,88 @@
                     <h2 class="darkTitleFirst">Как попасть на вечеринку?</h2>
                 </div>
                 <section class="blockFirst">
+                <?php
+                    $sql = 'SELECT * FROM howgetparty WHERE id = 1';
+                    $query = $pdo->prepare( $sql );
+                    $query->execute();
+                    $double = $query->fetchAll(PDO::FETCH_OBJ);
+                    foreach( $double as $el_double )
+                ?>
                     <div class="md_left">
-                        <h3><span>ВАРИАНТ:</span></h3>
-                        <h3 class="double"><span>ПАРА</span></h3>
-                        <p class="doubleDescrip">Чтобы попасть паре на вечеринку, я прошу скинуть на почту или в телеграмм @wings_angel
-                            свои фото в полный рост с лицом, без тёмных очков.</p>
+                        <h3><span><?php echo $el_double->list; ?>:</span></h3>
+                        <h3 class="double"><span><?php echo $el_double->type; ?></span></h3>
+                        <p class="doubleDescrip"><?php echo $el_double->text; ?></p>
                     </div>
                     <div class="md_right">
-                        <img src="../images/rules/double.jpg">
+                        <img src="../images/rules/<?php echo $el_double->image; ?>">
                     </div>
                 </section>
                 <section class="blockTwo">
+                <?php
+                    $sql = 'SELECT * FROM howgetparty WHERE id = 2';
+                    $query = $pdo->prepare( $sql );
+                    $query->execute();
+                    $man = $query->fetchAll(PDO::FETCH_OBJ);
+                    foreach( $man as $el_man )
+                ?>
                     <div class="md_left">
-                        <img src="../images/rules/man.jpg">
+                        <img src="../images/rules/<?php echo $el_man->image; ?>">
                     </div>
                     <div class="md_right">
-                        <h3><span>ВАРИАНТ:</span></h3>
-                        <h3 class="double"><span>МУЖЧИНА</span></h3>
-                        <p class="doubleDescrip">Чтобы попасть мужчине  на вечеринку, я прошу скинуть на
-                            почту или в телеграмм @wings_angel свои фото в полный рост с лицом, без тёмных
-                            очков и обязательно ссылка на любую социальную сеть, чтобы по хронике и истории фотографий
-                            и комментариев под ними, можно было понять вашу адекватность или за Вас должны поручится люди которых я знаю лично.</p>
+                        <h3><span><?php echo $el_man->list; ?>:</span></h3>
+                        <h3 class="double"><span><?php echo $el_man->type; ?></span></h3>
+                        <p class="doubleDescrip"><?php echo $el_man->text; ?></p>
                     </div>
                 </section>
                 <section class="blockThree">
+                <?php
+                    $sql = 'SELECT * FROM howgetparty WHERE id = 3';
+                    $query = $pdo->prepare( $sql );
+                    $query->execute();
+                    $girl = $query->fetchAll(PDO::FETCH_OBJ);
+                    foreach( $girl as $el_girl )
+                ?>
                     <div class="md_left">
-                        <h3><span>ВАРИАНТ:</span></h3>
-                        <h3 class="double"><span>ДЕВУШКА</span></h3>
-                        <p class="doubleDescrip">Чтобы попасть девушке на вечеринку, я прошу скинуть на почту или
-                            в телеграмм @wings_angel своё фото в полный рост с лицом, без тёмных очков.</p>
+                        <h3><span><?php echo $el_girl->list; ?>:</span></h3>
+                        <h3 class="double"><span><?php echo $el_girl->type; ?></span></h3>
+                        <p class="doubleDescrip"><?php echo $el_girl->text; ?></p>
                     </div>
                     <div class="md_right">
-                        <img src="../images/rules/girl.jpg">
+                        <img src="../images/rules/<?php echo $el_girl->image; ?>">
                     </div>
                 </section>
                 <section class="blockFour">
+                <?php
+                    $sql = 'SELECT * FROM howgetparty WHERE id = 4';
+                    $query = $pdo->prepare( $sql );
+                    $query->execute();
+                    $dress = $query->fetchAll(PDO::FETCH_OBJ);
+                    foreach( $dress as $el_dress )
+                ?>
                     <div class="md_left">
-                        <img src="../images/rules/dresscode.jpg">
+                        <img src="../images/rules/<?php echo $el_dress->image; ?>">
                     </div>
                     <div class="md_right">
-                        <h3><span>УСЛОВИЕ:</span></h3>
-                        <h3 class="double"><span>DRESS CODE</span></h3>
-                        <p class="doubleDescrip">Мужчины — стиль casual. Девушки — сексуальные платья/бельё и туфли на шпильках.</p>
+                        <h3><span><?php echo $el_dress->list; ?>:</span></h3>
+                        <h3 class="double"><span><?php echo $el_dress->type; ?></span></h3>
+                        <p class="doubleDescrip"><?php echo $el_dress->text; ?></p>
                     </div>
                 </section>
                 <section class="blockFive">
+                <?php
+                    $sql = 'SELECT * FROM howgetparty WHERE id = 5';
+                    $query = $pdo->prepare( $sql );
+                    $query->execute();
+                    $face = $query->fetchAll(PDO::FETCH_OBJ);
+                    foreach( $face as $el_face )
+                ?>
                     <div class="md_left">
-                        <h3><span>УСЛОВИЕ:</span></h3>
-                        <h3 class="double"><span>FACE CONTROL</span></h3>
-                        <p class="doubleDescrip">Все гости проходят строгий отбор и поэтому у меня на вечеринках
-                            собираются только красивые и адекватные люди примерно в одном социальном статусе.</p>
+                        <h3><span><?php echo $el_face->list; ?>:</span></h3>
+                        <h3 class="double"><span><?php echo $el_face->type; ?></span></h3>
+                        <p class="doubleDescrip"><?php echo $el_face->text; ?></p>
                     </div>
                     <div class="md_right">
-                        <img src="../images/rules/facecontrol.jpg">
+                        <img src="../images/rules/<?php echo $el_face->image; ?>">
                     </div>
                 </section>
             </div>
